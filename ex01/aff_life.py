@@ -22,7 +22,8 @@ def aff_life(data: pd.DataFrame) -> None:
 
 def main():
     data = load("../life_expectancy_years.csv")
-    aff_life(data)
+    if data is not None:
+        aff_life(data)
 
 
 if __name__ == "__main__":
