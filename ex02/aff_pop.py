@@ -7,22 +7,20 @@ import seaborn as sns
 def aff_life(data: pd.DataFrame) -> None:
     data = data.set_index('country').T
     data = data.iloc[:-50]
-    print(data.columns[58])
-    print(data.index)
+    print(data)
 
-    sns.set_theme(style="ticks")
-    plt.figure(figsize=(10, 6))
-    sns.lineplot(data=data, x=data.index, y=data.columns[12], label=data.columns[12])
-    sns.lineplot(data=data, x=data.index, y=data.columns[58], label=data.columns[58], color='green')
+    data_long = data[['Belgium', 'France']]
+    print(data_long)
+    data_long = data_long.assign(France = pd.to_numeric(data_long['France'].str.replace('M', '')))
+    data_long = data_long.assign(Belgium = pd.to_numeric(data_long['Belgium'].str.replace('M', '')))
+    print(data_long)
+    sns.lineplot(data=data_long[['Belgium', 'France']], palette=['blue', 'green'])
 
-    plt.title("France Life expectancy Projections")
     plt.xlabel("Year")
     plt.ylabel("Population")
 
     plt.gca().xaxis.set_major_locator(plt.MultipleLocator(40))
-    plt.gca().yaxis.set_major_locator(plt.MultipleLocator(200))
-
-    plt.gca().invert_yaxis()
+    plt.gca().yaxis.set_major_locator(plt.MultipleLocator(20))
 
     plt.show()
 
