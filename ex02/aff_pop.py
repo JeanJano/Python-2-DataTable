@@ -7,14 +7,11 @@ import seaborn as sns
 def aff_life(data: pd.DataFrame) -> None:
     data = data.set_index('country').T
     data = data.iloc[:-50]
-    print(data)
 
     data_long = data[['Belgium', 'France']]
-    print(data_long)
     data_long = data_long.assign(France = pd.to_numeric(data_long['France'].str.replace('M', '')))
     data_long = data_long.assign(Belgium = pd.to_numeric(data_long['Belgium'].str.replace('M', '')))
-    print(data_long)
-    sns.lineplot(data=data_long[['Belgium', 'France']], palette=['blue', 'green'])
+    sns.lineplot(data=data_long[['Belgium', 'France']], palette=['blue', 'green'], linestyle='solid', dashes=False)
 
     plt.xlabel("Year")
     plt.ylabel("Population")
