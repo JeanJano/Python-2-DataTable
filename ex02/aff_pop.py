@@ -15,6 +15,7 @@ def aff_life(data: pd.DataFrame) -> None:
 
     plt.xlabel("Year")
     plt.ylabel("Population")
+    plt.title("Population Projections")
 
     plt.gca().xaxis.set_major_locator(plt.MultipleLocator(40))
     plt.gca().yaxis.set_major_locator(plt.MultipleLocator(20))
